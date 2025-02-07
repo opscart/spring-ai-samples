@@ -1,4 +1,4 @@
-package com.example.ai_completion_demo;
+package com.example.aicompletiondemo;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

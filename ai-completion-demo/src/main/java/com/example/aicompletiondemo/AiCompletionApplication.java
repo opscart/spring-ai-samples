@@ -1,4 +1,4 @@
-package com.example.ai_completion_demo;
+package com.example.aicompletiondemo;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
