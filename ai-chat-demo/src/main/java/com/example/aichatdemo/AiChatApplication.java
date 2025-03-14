@@ -23,8 +23,7 @@ public class AiChatApplication {
 			var chatClient = builder.build();
 			log.info("Sending chat prompts to AI service. One moment please...");
 			String response = chatClient.prompt()
-					.system("You are a helpful assistant answering questions about Azure AI Services.")
-					.user("Does Azure OpenAI support customer managed keys? Do other Azure AI service support this too?")
+					.user("What was Microsoft's original internal codename for the project that eventually became Azure?")
 					.call()
 					.content();
 
