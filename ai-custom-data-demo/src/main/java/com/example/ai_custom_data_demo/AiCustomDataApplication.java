@@ -1,7 +1,6 @@
 package com.example.ai_custom_data_demo;
 
 import com.azure.core.credential.AzureKeyCredential;
-import com.azure.core.util.Context;
 import com.azure.search.documents.indexes.SearchIndexClient;
 import com.azure.search.documents.indexes.SearchIndexClientBuilder;
 import org.slf4j.Logger;
@@ -10,16 +9,10 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.embedding.EmbeddingModel;
 import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.ai.vectorstore.azure.AzureVectorStore;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @SpringBootApplication
 public class AiCustomDataApplication {
@@ -42,8 +35,7 @@ public class AiCustomDataApplication {
 					.build();
 
 			var response = chatClient.prompt()
-					.system("")
-					.user("")
+					.user("What are my available health plans?")
 					.call()
 					.content();
 	    };
@@ -59,13 +51,12 @@ public class AiCustomDataApplication {
 	}
 
 	// pdf reader load pdf
-
-
 	// ingestion phase - load the pdf
 	// we want to only load this 1x
 	@Bean
 	public VectorStore vectorStore(SearchIndexClient searchIndexClient, EmbeddingModel embeddingModel) {
-		return new AzureVectorStore(searchIndexClient, embeddingModel, true);
+		//AzureVectorStore azureVectorStore = new AzureVectorStore(searchIndexClient, embeddingModel, true);
+		return AzureVectorStore.builder(searchIndexClient,embeddingModel).build();
 	}
 
 }
