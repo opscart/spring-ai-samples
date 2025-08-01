@@ -18,8 +18,7 @@ steps:
     java -version
   displayName: 'Install Java 17'
 
-- script: |
-    ./mvnw clean package
+- script: mvn clean package
   displayName: 'Build with Maven'
 
 - task: AzureWebApp@1
