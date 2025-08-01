@@ -21,10 +21,8 @@ steps:
 
 - script: |
     cd ai-chat-demo
-    mvn clean package
+    mvn clean package -Dspring.ai.openai.api-key=$(SPRING_AI_OPENAI_API_KEY)
   displayName: 'Build with Maven'
-  env:
-    SPRING_AI_OPENAI_API_KEY: $(SPRING_AI_OPENAI_API_KEY)
 
 - task: AzureWebApp@1
   inputs:
