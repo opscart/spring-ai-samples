@@ -15,7 +15,7 @@ variables:
 - name: javaVersion
   value: '17'
 - name: SPRING_AI_AZURE_OPENAI_ENDPOINT
-  value: $(azure_openai_endpoint
+  value: $(azure_openai_endpoint)
 - name: SPRING_AI_OPENAI_API_KEY
   value: $(openai_api_key)  # 👈 This will now resolve correctly from the group
 
