@@ -6,7 +6,6 @@ pool:
 
 variables:
 - group: devops-ai-agent-group  # 👈 Link the variable group here
-
 - name: azureSubscription
   value: 'my-app-ado-con'
 - name: azureResourceGroup
