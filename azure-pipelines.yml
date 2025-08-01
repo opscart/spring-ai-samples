@@ -9,6 +9,7 @@ variables:
   azureResourceGroup: 'java-ai-rg'           # Use your resource group name
   azureAppName: 'hello-ai-java'            # Use the app name from previous step
   javaVersion: '17'
+  SPRING_AI_OPENAI_API_KEY: $(openai_api_key)
 
 
 steps:
@@ -22,6 +23,8 @@ steps:
     cd ai-chat-demo
     mvn clean package
   displayName: 'Build with Maven'
+  env:
+    SPRING_AI_OPENAI_API_KEY: $(SPRING_AI_OPENAI_API_KEY)
 
 - task: AzureWebApp@1
   inputs:
