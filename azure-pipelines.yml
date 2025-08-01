@@ -1,0 +1,29 @@
+trigger:
+- main   # or your default branch
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  azureSubscription: 'my-app-ado-con'
+  azureResourceGroup: 'java-ai-rg'           # Use your resource group name
+  azureAppName: 'hello-ai-java'            # Use the app name from previous step
+  javaVersion: '17'
+
+steps:
+- task: UseJava@1
+  inputs:
+    versionSpec: '$(javaVersion)'
+    architecture: 'x64'
+
+- script: |
+    ./mvnw clean package
+  displayName: 'Build with Maven'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '$(azureSubscription)'
+    appType: 'webAppLinux'
+    appName: '$(azureAppName)'
+    resourceGroupName: '$(azureResourceGroup)'
+    package: 'target/*.jar'
