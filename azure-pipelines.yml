@@ -10,11 +10,13 @@ variables:
   azureAppName: 'hello-ai-java'            # Use the app name from previous step
   javaVersion: '17'
 
+
 steps:
-- task: UseJava@1
-  inputs:
-    versionSpec: '$(javaVersion)'
-    architecture: 'x64'
+- script: |
+    sudo apt-get update
+    sudo apt-get install -y openjdk-17-jdk
+    java -version
+  displayName: 'Install Java 17'
 
 - script: |
     ./mvnw clean package
