@@ -18,7 +18,9 @@ steps:
     java -version
   displayName: 'Install Java 17'
 
-- script: mvn clean package
+- script: |
+    cd ai-chat-demo
+    mvn clean package
   displayName: 'Build with Maven'
 
 - task: AzureWebApp@1
