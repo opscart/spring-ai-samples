@@ -28,6 +28,7 @@ steps:
 
 - script: |
     echo "Key is: $(SPRING_AI_OPENAI_API_KEY)"
+    echo "Endpoint is: $(SPRING_AI_AZURE_OPENAI_ENDPOINT)"
   displayName: 'Debug - Print API Key (for troubleshooting only)'
 
 - script: |
