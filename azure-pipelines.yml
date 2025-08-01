@@ -32,6 +32,10 @@ steps:
   displayName: 'Debug - Print API Key (for troubleshooting only)'
 
 - script: |
+    printenv | grep SPRING
+  displayName: 'Debug - Print SPRING_* env vars'
+
+- script: |
     cd ai-chat-demo
     mvn clean package \
       -Dspring.ai.openai.api-key=$(SPRING_AI_OPENAI_API_KEY) \
