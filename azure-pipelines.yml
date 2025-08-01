@@ -26,6 +26,10 @@ steps:
   displayName: 'Install Java 17'
 
 - script: |
+    echo "Key is: $(SPRING_AI_OPENAI_API_KEY)"
+  displayName: 'Debug - Print API Key (for troubleshooting only)'
+
+- script: |
     cd ai-chat-demo
     mvn clean package -Dspring.ai.azure.openai.api-key=$(SPRING_AI_OPENAI_API_KEY)
   displayName: 'Build with Maven'
