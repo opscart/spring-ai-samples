@@ -1,16 +1,22 @@
 trigger:
-- main   # or your default branch
+- main
 
 pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  azureSubscription: 'my-app-ado-con'
-  azureResourceGroup: 'java-ai-rg'           # Use your resource group name
-  azureAppName: 'hello-ai-java'            # Use the app name from previous step
-  javaVersion: '17'
-  SPRING_AI_OPENAI_API_KEY: $(openai_api_key)
+- group: devops-ai-agent-group  # 👈 Link the variable group here
 
+- name: azureSubscription
+  value: 'my-app-ado-con'
+- name: azureResourceGroup
+  value: 'java-ai-rg'
+- name: azureAppName
+  value: 'hello-ai-java'
+- name: javaVersion
+  value: '17'
+- name: SPRING_AI_OPENAI_API_KEY
+  value: $(openai_api_key)  # 👈 This will now resolve correctly from the group
 
 steps:
 - script: |
@@ -21,7 +27,7 @@ steps:
 
 - script: |
     cd ai-chat-demo
-    mvn clean package -Dspring.ai.openai.api-key=$(SPRING_AI_OPENAI_API_KEY)
+    mvn clean package -Dspring.ai.azure.openai.api-key=$(SPRING_AI_OPENAI_API_KEY)
   displayName: 'Build with Maven'
 
 - task: AzureWebApp@1
