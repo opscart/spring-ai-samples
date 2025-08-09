@@ -9,7 +9,7 @@ variables:
 - name: azureSubscription
   value: 'my-app-ado-con'
 - name: azureResourceGroup
-  value: 'java-ai-rg'
+  value: 'opscart-hub_group'
 - name: azureAppName
   value: 'hello-ai-java'
 - name: javaVersion
